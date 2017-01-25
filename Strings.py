@@ -112,9 +112,58 @@ def print_formatted(number):
 
 
 #https://www.hackerrank.com/challenges/alphabet-rangoli
+import string
+def print_rangoli(size):
+    letters=string.ascii_lowercase
+
+    for i in range(size):
+        rangoli1="-"*(size*2-(i+1)*2)
+        rangoli2="-".join([letters[size-c-1] for c in range(i+1)])
+        rangoli3=rangoli2[::-1]
+        print(rangoli1+rangoli2+rangoli3[1:]+rangoli1)
+    for i in range(size-2,-1,-1):
+        rangoli1="-"*(size*2-(i+1)*2)
+        rangoli2="-".join([letters[size-c-1] for c in range(i+1)])
+        rangoli3=rangoli2[::-1]
+        print(rangoli1+rangoli2+rangoli3[1:]+rangoli1)
 
 #https://www.hackerrank.com/challenges/capitalize
+def capitalize(string):
+    inputString=string.split(" ")
+    outputString=" ".join([e[0].upper() + e[1:] if e.strip()!=""  else e for e in inputString ])
+    return outputString
 
 #https://www.hackerrank.com/challenges/the-minion-game
+def minion_game(string):
+    # your code goes here
+
+    scoreStuart = 0
+    scoreKevin = 0
+    vowel = ["A", "E", "I", "O", "U"]
+    for i in range(len(string) + 1):
+
+        first = string[i:i + 1]
+
+        if first in vowel:
+            scoreKevin = scoreKevin + len(string) - i
+
+        else:
+            scoreStuart = scoreStuart + len(string) - i
+    if scoreStuart < scoreKevin:
+        print("Kevin " + str(scoreKevin))
+    if scoreStuart > scoreKevin:
+        print("Stuart " + str(scoreStuart))
+    if scoreStuart == scoreKevin:
+        print("Draw")
 
 #https://www.hackerrank.com/challenges/merge-the-tools
+from collections import OrderedDict
+
+
+def merge_the_tools(string, k):
+    # your code goes here
+    for i in range(int(len(string) / k)):
+        substring = string[k * i:k * (i + 1)]
+        dic = OrderedDict.fromkeys(substring)
+
+        print("".join(dic))
